@@ -35,11 +35,11 @@ public class CustomerController {
             .orElseThrow(() -> new ResourceNotFoundException("Customer", "id", customerId));
     }
 
-    @GetMapping("/{login}")
+  /*  @GetMapping("/{login}")
     public CustomerEntity getCustomerByLogin(@PathVariable(value = "login") String customerLogin) {
         return customerRepository.findByLogin(customerLogin)
             .orElseThrow(() -> new ResourceNotFoundException("Customer", "login", customerLogin));
-    }
+    }*/
 
 
 
