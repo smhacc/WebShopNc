@@ -35,11 +35,11 @@ public class CustomerController {
             .orElseThrow(() -> new ResourceNotFoundException("Customer", "id", customerId));
     }
 
-  /*  @GetMapping("/{login}")
+    @GetMapping("/{login}")
     public CustomerEntity getCustomerByLogin(@PathVariable(value = "login") String customerLogin) {
         return customerRepository.findByLogin(customerLogin)
             .orElseThrow(() -> new ResourceNotFoundException("Customer", "login", customerLogin));
-    }*/
+    }
 
 
 
@@ -49,8 +49,9 @@ public class CustomerController {
 
         CustomerEntity customer = customerRepository.findById(customerId)
             .orElseThrow(() -> new ResourceNotFoundException("Customer", "id", customerId));
-
-        customer.setLogin(customerDetails.getLogin());
+        if (customerDetails.getLogin() !=null) {
+            customer.setLogin(customerDetails.getLogin());
+        }
         customer.setFirst_name(customerDetails.getFirst_name());
         customer.setLast_name(customerDetails.getLast_name());
         customer.setPassword(customerDetails.getPassword());
