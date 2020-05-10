@@ -50,8 +50,21 @@ public class ProductEntity {
     /**
      * Instantiates a new Product.
      */
+    public ProductEntity(Long id, String name, float price, String description, Long count) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.count = count;
+
+    }
+
+
     public ProductEntity() {
     }
+
+
 
     /**
      * Gets id.
@@ -143,4 +156,23 @@ public class ProductEntity {
     public void setCategory(CategoriesEntity category) {
         this.category = category;
     }
+    /**
+     * Gets count.
+     *
+     * @return the count
+     */
+    public Long getCount() {
+        return count;
+    }
+
+    /**
+     * Sets count.
+     *
+     * @param count the category
+     */
+    public void setCount(Long count) {
+        this.count = count;
+    }
+
+
 }

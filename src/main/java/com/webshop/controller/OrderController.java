@@ -1,17 +1,24 @@
-package com.webshop.backend.controller;
+package com.webshop.controller;
 
-import com.webshop.backend.exception.ResourceNotFoundException;
-import com.webshop.backend.model.OrderEntity;
-import com.webshop.backend.repository.OrderRepository;
+import com.webshop.exception.ResourceNotFoundException;
+import com.webshop.model.OrderEntity;
+import com.webshop.repository.OrderRepository;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/api/order")
+@RequestMapping("/api/orders")
 public class OrderController {
 
     @Autowired
@@ -37,7 +44,7 @@ public class OrderController {
 
     @PutMapping("/{id}")
     public OrderEntity updateOrder(@PathVariable(value = "id") Long orderId,
-                                         @Valid @RequestBody OrderEntity orderDetails) {
+                                   @Valid @RequestBody OrderEntity orderDetails) {
 
         OrderEntity order = orderRepository.findById(orderId)
             .orElseThrow(() -> new ResourceNotFoundException("Order", "id", orderId));

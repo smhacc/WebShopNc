@@ -7,7 +7,15 @@
   </style>
 
  <div class="container">
-
+ <c:forEach  items="${listProducts}" var="product">
+             <tr>
+                 <td>${product.id}</td>
+                 <td>${product.name}</td>
+                 <td>${product.description}</td>
+                 <td>${product.count}</td>
+                 <td>${product.price}</td>
+             </tr>
+         </c:forEach>
       <div class="row row-offcanvas row-offcanvas-left">
 
 
@@ -26,10 +34,11 @@
           <div class="row">
             <div class="col-6 col-sm-6 col-lg-4">
               <img class="featurette-image img-responsive left-block" src="img/cattype1/bluepixelcat1.png" width="170" height="170" alt="Generic placeholder image">
-              <h3>BluePixelCat#1</h3>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <h4>Price: 180$  <span class="text-muted"><h5>All prices are not include tax.</h5></span></h4>
-              <p><a class="btn btn-default btn-success" href="#" role="button">Add to cart &raquo;</a></p>
+              <h3><c:forEach  items="${listProducts}" var="product"> <tr><td>${product.name}</td> </tr></c:forEach></h3>
+              <p><c:forEach  items="${listProducts}" var="product"> <tr><td>${product.description}</td> </tr></c:forEach></p>
+              <h4>Price: <c:forEach  items="${listProducts}" var="product"> <tr><td>${product.price}</td> </tr></c:forEach>$
+              <span class="text-muted"><h5>All prices are not include tax.</h5></span></h4>
+              <p><a class="btn btn-default btn-success" href="/new?count=1{product.count}" role="button">Add to cart &raquo;</a></p>
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
                <img class="featurette-image img-responsive left-block" src="img/cattype2/bluepixelcat2.png" width="170" height="170" alt="Generic placeholder image">

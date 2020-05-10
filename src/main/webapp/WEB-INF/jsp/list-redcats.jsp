@@ -88,6 +88,10 @@ $(".postcode-input button").click(function () {
         }
     });
 });
+
+<%
+    String accountId = request.getParameter("accountID");
+%>
       <hr>
       <footer>
         <p>&copy; Company 2014</p>

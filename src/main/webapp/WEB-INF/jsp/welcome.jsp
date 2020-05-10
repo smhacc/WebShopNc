@@ -1,34 +1,30 @@
 <%@ include file="common/header.jspf"%>
-<%@ include file="common/navigation.jspf"%>
+<%@ include file="common/navigation2.jspf"%>
 
-<html>
-   <head>
-      <title>Using GET Method to Read Form Data</title>
-   </head>
-
-   <body>
-      <h1>Using GET Method to Read Form Data</h1>
-      <ul>
-         <li><p><b>First Name:</b>
-            <%= request.getParameter("name")%>
-         </p></li>
-         <li><p><b>Last  Name:</b>
-            <%= request.getParameter("description")%>
-         </p></li>
-      </ul>
-
-   </body>
-</html>
-<div class="container">
-
-	<div class="panel panel-primary">
-		<div class="panel-heading">Home Page</div>
-		<div class="panel-body">
-			Welcome ${name}!! <a href="/list-todos">Click here</a> to manage your
-			todo's.
-		</div>
-	</div>
-</div>
+ <div class="container">
+      <div class="row row-offcanvas row-offcanvas-left">
 
 
-<%@ include file="common/footer.jspf"%>
+       <div class="col-xs-12 col-sm-9">
+       <div style="background-color: RGB(240, 240, 240);  !important" class="jumbotron">
+       <h1>Welcome page</h1>
+        <p> <small>
+        Welcome page
+        </p>
+        </div>
+        <p>&copy; NetCrackerCompany 2020</p>
+        <div style="height:75px; width:560px;"></div>
+        <div style="height:75px; width:560px;"></div>
+        </div><!--/span-->
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+        <div class="list-group">
+        <a href="#" class="list-group-item active">Menu</a>
+        <a href="/list-redcats" class="list-group-item">RedPixelCats</a>
+        <a href="/list-greencats" class="list-group-item">GreenPixelCats</a>
+        <a href="/list-bluecats" class="list-group-item">BluePixelCats</a>
+        <a href="/list-monocats" class="list-group-item">MonochromePixelCats</a>
+       </div>
+       </div><!--/span-->
+
+    </div><!--/.container-->
+<%@ include file="common/footer.jspf" %>
