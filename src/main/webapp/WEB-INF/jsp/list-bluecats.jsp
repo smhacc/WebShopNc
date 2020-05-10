@@ -2,11 +2,17 @@
 <%@ include file="common/navigation2.jspf"%>
  <style>
    body {
-    background-color: RGB(255, 255, 255); /* Путь к фоновому изображению */
+    background-color: RGB(252, 252, 252); /* Путь к фоновому изображению */
    } 434b58
   </style>
 
  <div class="container">
+ <nav aria-label="breadcrumb">
+   <ol class="breadcrumb">
+     <li class="breadcrumb-item"><a href="#">Home</a></li>
+     <li class="breadcrumb-item active" aria-current="page">List-bluecats</li>
+   </ol>
+ </nav>
  <c:forEach  items="${listProducts}" var="product">
              <tr>
                  <td>${product.id}</td>
@@ -24,8 +30,7 @@
             <h1>Blue pixelcat breed</h1>
             <p> <small>
             The PixelcCat is a centuries-old landrace (natural variety) of domestic cat in Russia and recently developed
-            as a formal breed with standards promulgated the world over since the late 1980s.
-            Siberians vary from medium to large in size. The formal name of the breed is PixelcCat Forest Cat, but usually
+          Siberians vary from medium to large in size. The formal name of the breed is PixelcCat Forest Cat, but usually
             it's simply called the PixelcCat or PixelcCat cat.
             The colorpoint variant of the breed is called the Neva Masquerade by some registries.
             </p>

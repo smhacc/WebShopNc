@@ -4,12 +4,17 @@
     src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  <style>
    body {
-    background-color: RGB(255, 255, 255); /* Путь к фоновому изображению */
+    background-color: RGB(252, 252, 252); /* Путь к фоновому изображению */
    } 434b58
   </style>
 
  <div class="container">
-
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">List-redcats</li>
+  </ol>
+</nav>
       <div class="row row-offcanvas row-offcanvas-left">
 
 

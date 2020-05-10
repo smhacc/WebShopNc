@@ -2,12 +2,17 @@
 <%@ include file="common/navigation2.jspf"%>
  <style>
    body {
-    background-color: RGB(255, 255, 255); /* Путь к фоновому изображению */
+    background-color: RGB(252, 252, 252); /* Путь к фоновому изображению */
    } 434b58
   </style>
 
  <div class="container">
-
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">List-greencats</li>
+  </ol>
+</nav>
       <div class="row row-offcanvas row-offcanvas-right">
 
 
