@@ -37,23 +37,23 @@
           <div class="row">
             <div class="col-6 col-sm-6 col-lg-4">
               <img class="featurette-image img-responsive left-block" src="img/cattype1/redpixelcat1.png" width="170" height="170" alt="Generic placeholder image">
-              <h3>RedPixelCat#1</h3>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <h4>Price: 180$  <span class="text-muted"><h5>All prices are not include tax.</h5></span></h4>
+              <h3><c:forEach items="${listProducts1}" var="product"><c:if test="${product.id == 1}"><tr><td>${product.name}</td> </tr></c:if> </c:forEach></h3>
+              <p><c:forEach  items="${listProducts1}" var="product"><c:if test="${product.id == 1}"> <tr><td>${product.description}</td> </tr> </c:if></c:forEach></p>
+              <h4>Price: <c:forEach  items="${listProducts1}" var="product"><c:if test="${product.id == 1}"> <tr><td>${product.price}</td> </tr> </c:if></c:forEach>$
               <p><a class="btn btn-default btn-success" href="" role="button">Add to cart &raquo;</a></p>
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
                <img class="featurette-image img-responsive left-block" src="img/cattype2/redpixelcat2.png" width="170" height="170" alt="Generic placeholder image">
-              <h3>RedPixelCat#2</h3>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <h4>Price: 195$  <span class="text-muted"><h5>All prices are not include tax.</h5></span></h4>
+              <h3><c:forEach items="${listProducts}" var="product"><c:if test="${product.id == 2}"><tr><td>${product.name}</td> </tr></c:if> </c:forEach></h3>
+              <p><c:forEach  items="${listProducts}" var="product"><c:if test="${product.id == 2}"> <tr><td>${product.description}</td> </tr> </c:if></c:forEach></p>
+              <h4>Price: <c:forEach  items="${listProducts}" var="product"><c:if test="${product.id == 2}"> <tr><td>${product.price}</td> </tr> </c:if></c:forEach>$
               <p><a class="btn btn-default btn-success" href="#" role="button">Add to cart &raquo;</a></p>
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
               <img class="featurette-image img-responsive left-block" src="img/cattype3/redpixelcat3.png" width="170" height="170" alt="Generic placeholder image">
-              <h3>RedPixelCat#3</h3>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <h4>Price: 179$  <span class="text-muted"><h5>All prices are not include tax.</h5></span></h4>
+              <h3><c:forEach items="${listProducts}" var="product"><c:if test="${product.id == 3}"><tr><td>${product.name}</td> </tr></c:if> </c:forEach></h3>
+                            <p><c:forEach  items="${listProducts}" var="product"><c:if test="${product.id == 3}"> <tr><td>${product.description}</td> </tr> </c:if></c:forEach></p>
+                            <h4>Price: <c:forEach  items="${listProducts}" var="product"><c:if test="${product.id == 3}"> <tr><td>${product.price}</td> </tr> </c:if></c:forEach>$
               <p><a class="btn btn-default btn-success" href="#" role="button">Add to cart &raquo;</a></p>
             </div><!--/span-->
           </div><!--/row-->

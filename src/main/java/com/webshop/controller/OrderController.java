@@ -3,25 +3,75 @@ package com.webshop.controller;
 import com.webshop.exception.ResourceNotFoundException;
 import com.webshop.model.OrderEntity;
 import com.webshop.repository.OrderRepository;
+import com.webshop.service.OrderService;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 
 @RestController
 @RequestMapping("/api/orders")
 public class OrderController {
 
-    @Autowired
+	@Autowired
+	private OrderService service;
+
+	@RequestMapping("/cart")
+	public String viewCartPage(Model model) {
+		List<OrderEntity> listOrders = service.listAll();
+		model.addAttribute("listOrders", listOrders);
+
+		return "cart";
+	}
+
+	@RequestMapping("/new")
+	public String showNewProductPage(Model model) {
+        OrderEntity order = new OrderEntity();
+		model.addAttribute("order", order);
+
+		return "new_order";
+	}
+
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	public String saveProduct(@ModelAttribute("product") OrderEntity order) {
+
+		service.save(order);
+
+		return "redirect:/cart";
+	}
+
+	@RequestMapping("/edit/{id}")
+	public ModelAndView showEditProductPage(@PathVariable(name = "id") int id) {
+		ModelAndView mav = new ModelAndView("edit_product");
+        OrderEntity order = service.get(id);
+		mav.addObject("order", order);
+
+		return mav;
+	}
+
+	@RequestMapping("/delete/{id}")
+	public String deleteProduct(@PathVariable(name = "id") int id) {
+		service.delete(id);
+		return "redirect:/";
+	}
+
+
+
+
+/*    @Autowired
     OrderRepository orderRepository;
 
     @GetMapping("/all")
@@ -49,7 +99,6 @@ public class OrderController {
         OrderEntity order = orderRepository.findById(orderId)
             .orElseThrow(() -> new ResourceNotFoundException("Order", "id", orderId));
 
-        order.setDiscount(orderDetails.getDiscount());
         order.setComment(orderDetails.getComment());
 
 
@@ -66,6 +115,6 @@ public class OrderController {
         orderRepository.delete(order);
 
         return ResponseEntity.ok().build();
-    }
+    }*/
 }
 

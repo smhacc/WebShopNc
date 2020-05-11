@@ -14,19 +14,26 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 
-@Controller("/product")
+@Controller
 public class ProductController {
 
     @Autowired
     private ProductService productService;
 
     @RequestMapping("/list-bluecats")
-    public String viewHomePage(Model model) {
+    public String viewBluePage(Model model) {
         List<ProductEntity> listProducts = productService.listAll();
         model.addAttribute("listProducts", listProducts);
         return "list-bluecats";
 
     }
+	@RequestMapping("/list-redcats")
+	public String viewRedPage(Model model) {
+		List<ProductEntity> listProducts1 = productService.listAll();
+		model.addAttribute("listProducts", listProducts1);
+		return "list-redcats";
+
+	}
 
 	@RequestMapping("/new")
 	public String showNewProductPage(Model model) {

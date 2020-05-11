@@ -31,50 +31,27 @@
           <div class="row">
             <div class="col-6 col-sm-6 col-lg-4">
               <img class="featurette-image img-responsive left-block" src="img/cattype1/greenpixelcat1.png" width="170" height="170" alt="Generic placeholder image">
-              <h3>GreenPixelCat#1</h3>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <h4>Price: 180$  <span class="text-muted"><h5>All prices are not include tax.</h5></span></h4>
+              <h3><c:forEach items="${listProducts}" var="product"><c:if test="${product.id == 4}"><tr><td>${product.name}</td> </tr></c:if> </c:forEach></h3>
+              <p><c:forEach  items="${listProducts}" var="product"><c:if test="${product.id == 4}"> <tr><td>${product.description}</td> </tr> </c:if></c:forEach></p>
+              <h4>Price: <c:forEach  items="${listProducts}" var="product"><c:if test="${product.id == 4}"> <tr><td>${product.price}</td> </tr> </c:if></c:forEach>$
               <p><a class="btn btn-default btn-success" href="#" role="button">Add to cart &raquo;</a></p>
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
                <img class="featurette-image img-responsive left-block" src="img/cattype2/greenpixelcat2.png" width="170" height="170" alt="Generic placeholder image">
-              <h3>GreenPixelCat#2</h3>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <h4>Price: 195$  <span class="text-muted"><h5>All prices are not include tax.</h5></span></h4>
+              <h3><c:forEach items="${listProducts}" var="product"><c:if test="${product.id == 5}"><tr><td>${product.name}</td> </tr></c:if> </c:forEach></h3>
+                            <p><c:forEach  items="${listProducts}" var="product"><c:if test="${product.id == 5}"> <tr><td>${product.description}</td> </tr> </c:if></c:forEach></p>
+                            <h4>Price: <c:forEach  items="${listProducts}" var="product"><c:if test="${product.id == 5}"> <tr><td>${product.price}</td> </tr> </c:if></c:forEach>$
               <p><a class="btn btn-default btn-success" href="#" role="button">Add to cart &raquo;</a></p>
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
               <img class="featurette-image img-responsive left-block" src="img/cattype3/greenpixelcat3.png" width="170" height="170" alt="Generic placeholder image">
-              <h3>GreenPixelCat#3</h3>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <h4>Price: 179$  <span class="text-muted"><h5>All prices are not include tax.</h5></span></h4>
+              <h3><c:forEach items="${listProducts}" var="product"><c:if test="${product.id == 6}"><tr><td>${product.name}</td> </tr></c:if> </c:forEach></h3>
+                            <p><c:forEach  items="${listProducts}" var="product"><c:if test="${product.id == 6}"> <tr><td>${product.description}</td> </tr> </c:if></c:forEach></p>
+                            <h4>Price: <c:forEach  items="${listProducts}" var="product"><c:if test="${product.id == 6}"> <tr><td>${product.price}</td> </tr> </c:if></c:forEach>$
               <p><a class="btn btn-default btn-success" href="#" role="button">Add to cart &raquo;</a></p>
             </div><!--/span-->
           </div><!--/row-->
-          <div style="height:75px; width:560px;"></div>
-          <div class="row">
-            <div class="col-6 col-sm-6 col-lg-4">
-               <img class="featurette-image img-responsive left-block" src="img/cattype4/greenpixelcat4.png" width="170" height="170" alt="Generic placeholder image">
-               <h3>GreenPixelCat#4</h3>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                 <h4>Price: 174$  <span class="text-muted"><h5>All prices are not include tax.</h5></span></h4>
-                 <p><a class="btn btn-default btn-success" href="#" role="button">Add to cart &raquo;</a></p>
-                 </div><!--/span-->
-            <div class="col-6 col-sm-6 col-lg-4">
-                 <img class="featurette-image img-responsive left-block" src="img/cattype5/greenpixelcat5.png" width="170" height="170" alt="Generic placeholder image">
-                 <h3>GreenPixelCat#5</h3>
-                 <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                  <h4>Price: 191$  <span class="text-muted"><h5>All prices are not include tax.</h5></span></h4>
-                  <p><a class="btn btn-default btn-success" href="#" role="button">Add to cart &raquo;</a></p>
-            </div><!--/span-->
-            <div class="col-6 col-sm-6 col-lg-4">
-                  <img class="featurette-image img-responsive left-block" src="img/cattype6/greenpixelcat6.png" width="170" height="170" alt="Generic placeholder image">
-                  <h3>GreenPixelCat#6</h3>
-                   <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                   <h4>Price: 162$  <span class="text-muted"><h5>All prices are not include tax.</h5></span></h4>
-                   <p><a class="btn btn-default btn-success" href="#" role="button">Add to cart &raquo;</a></p>
-            </div><!--/span-->
-          </div><!--/row-->
+
         </div><!--/span-->
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
                         <div class="list-group">

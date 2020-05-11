@@ -3,16 +3,21 @@ package com.webshop.model;
  * Copyright
  */
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
- * The type ORDER.
+ * The type ORDERS.
  */
 @Entity
 @Table(name = "ORDERS")
@@ -23,16 +28,34 @@ public class OrderEntity {
     @Column(name = "ORDERS_ID")
     private Long id;
 
+    @ManyToOne(cascade = {CascadeType.DETACH})
+    @JoinColumn(name = "CUSTOMER_ID", foreignKey = @ForeignKey(name = "OR_CUST_FK"))
+    private CustomerEntity customer;
+
+    @OneToOne(cascade = {CascadeType.DETACH})
+    @JoinColumn(name = "DELIVERY_ID", foreignKey = @ForeignKey(name = "OR_DELIV_FK"))
+    private DeliveryEntity delivery;
+
+    @Column(name="ORDER_SUM")
+    private Float sum;
+
     @Column(name = "ORDERS_COMMENT")
     private String comment;
-
-    @Column(name = "ORDERS_DISCOUNT")
-    private String discount;
 
     /**
      * Instantiates a new Order.
      */
     public OrderEntity() {
+    }
+
+    public OrderEntity(Long id, String comment, float sum/*, DeliveryEntity delivery, CustomerEntity customer*/) {
+        super();
+        this.id = id;
+        this.comment = comment;
+        this.sum = sum;
+        /*this.customer = customer;
+        this.delivery = delivery;*/
+
     }
 
     /**
@@ -65,27 +88,63 @@ public class OrderEntity {
     /**
      * Sets comment.
      *
-     * @param id the id
+     * @param comment the comment
      */
     public void setComment(String comment) {
         this.comment = comment;
     }
-
     /**
-     * Gets discount.
+     * Gets sum.
      *
-     * @return the sale
+     * @return the sum
      */
-    public String getDiscount() {
-        return discount;
+    public Float getSum() {
+        return sum;
     }
 
     /**
-     * Sets discount.
+     * Sets id.
      *
-     * @param discount the discount
+     * @param sum the sum
      */
-    public void setDiscount(String discount) {
-        this.discount = discount;
+    public void setSum(Float sum) {
+        this.sum = sum;
     }
+
+    /**
+     * Gets user.
+     *
+     * @return the user
+     */
+    public CustomerEntity getCustomer() {
+        return customer;
+    }
+
+    /**
+     * Sets customer.
+     *
+     * @param customer the customer
+     */
+    public void setCustomer(CustomerEntity customer) {
+        this.customer = customer;
+    }
+
+    /**
+     * Gets delivery.
+     *
+     * @return the delivery
+     */
+    public DeliveryEntity getAddress() {
+        return delivery;
+    }
+
+    /**
+     * Sets delivery.
+     *
+     * @param delivery the delivery
+     */
+    public void setAddress(DeliveryEntity delivery) {
+        this.delivery = delivery;
+    }
+
 }
