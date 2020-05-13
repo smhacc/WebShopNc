@@ -42,13 +42,13 @@ public class DeliveryEntity {
 //        super();
 //    }
 //
-//    public Delivery(String city, String street, String home, String apartment) {
-//        super();
-//        this.street = street;
-//        this.city = city;
-//        this.home = home;
-//        this.apartment = apartment;
-//    }
+    public DeliveryEntity(Long id, String city, String street, String home, String apartment) {
+        super();
+        this.street = street;
+        this.city = city;
+        this.home = home;
+        this.apartment = apartment;
+    }
 
     /**
      * Instantiates a new Delivery.

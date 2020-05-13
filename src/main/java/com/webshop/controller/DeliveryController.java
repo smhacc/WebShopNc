@@ -1,80 +1,105 @@
 package com.webshop.controller;
 
-import java.util.List;
-import javax.validation.Valid;
-import com.webshop.exception.ResourceNotFoundException;
 import com.webshop.model.DeliveryEntity;
-import com.webshop.repository.DeliveryRepository;
+import com.webshop.service.DeliveryService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 
-@RestController
-@RequestMapping("/api/delivery")
+@Controller
 public class DeliveryController {
 
     @Autowired
-    DeliveryRepository deliveryRepository;
+    private DeliveryService deliveryService;
 
-    @GetMapping("/all")
-    public List<DeliveryEntity> getAllDeliverys() {
-        return deliveryRepository.findAll();
+    @RequestMapping("/delivery-page")
+    public String viewDeliveryPage(Model model) {
+        List<DeliveryEntity> listDeliverys = deliveryService.listAll();
+        model.addAttribute("listDeliverys", listDeliverys);
+        return "delivery-page";
     }
 
-    @PostMapping("/all")
-    public DeliveryEntity createDelivery(@Valid @RequestBody DeliveryEntity delivery) {
-        return deliveryRepository.save(delivery);
+    @RequestMapping("/new-delivery")
+    public String showNewCartPage(Model model) {
+        DeliveryEntity delivery = new DeliveryEntity();
+        model.addAttribute("delivery", delivery);
+        return "delivery-page";
     }
 
-    @GetMapping("/{id}")
-    public DeliveryEntity getDeliveryById(@PathVariable(value = "id") Long deliveryId) {
-        return deliveryRepository.findById(deliveryId)
-            .orElseThrow(() -> new ResourceNotFoundException("Delivery", "id", deliveryId));
+    @RequestMapping(value = "/save-delivery", method = RequestMethod.POST)
+    public String saveDelivery(@ModelAttribute("delivery") DeliveryEntity delivery) {
+        deliveryService.save(delivery);
+        return "redirect:/delivery-page";
     }
 
+    @RequestMapping("/edit-delivery/{id}")
+    public ModelAndView showEditDeliveryPage(@PathVariable(name = "id") int id) {
+        ModelAndView mav = new ModelAndView("edit_product");
+        DeliveryEntity delivery = deliveryService.get(id);
+        mav.addObject("delivery", delivery);
 
-
-    @PutMapping("/{id}")
-    public DeliveryEntity updateDelivery(@PathVariable(value = "id") Long deliveryId,
-                                         @Valid @RequestBody DeliveryEntity deliveryDetails) {
-
-        DeliveryEntity delivery = deliveryRepository.findById(deliveryId)
-            .orElseThrow(() -> new ResourceNotFoundException("Delivery", "id", deliveryId));
-
-        delivery.setCity(deliveryDetails.getCity());
-        delivery.setStreet(deliveryDetails.getStreet());
-        delivery.setHome(deliveryDetails.getHome());
-        delivery.setApartment(deliveryDetails.getApartment());
-
-
-
-        DeliveryEntity updatedDelivery = deliveryRepository.save(delivery);
-        return updatedDelivery;
+        return mav;
     }
 
-    @DeleteMapping("/delivery/{id}")
-    public ResponseEntity<?> deleteDelivery(@PathVariable(value = "id") Long deliveryId) {
-        DeliveryEntity delivery = deliveryRepository.findById(deliveryId)
-            .orElseThrow(() -> new ResourceNotFoundException("Delivery", "id", deliveryId));
-
-        deliveryRepository.delete(delivery);
-
-        return ResponseEntity.ok().build();
+    @RequestMapping("/delete-delivery/{id}")
+    public String deleteProduct(@PathVariable(name = "id") int id) {
+        deliveryService.delete(id);
+        return "redirect:/delivery-page";
     }
-
-//    @GetMapping(value = "/add-delivery")
-//    public String showPage(ModelMap model) {
-//        model.addAttribute("deliveryadd", new Delivery());
-//        return "deliveryadd";
+    
+//    @Autowired
+//    DeliveryRepository deliveryRepository;
+//
+//    @GetMapping("/all")
+//    public List<DeliveryEntity> getAllDeliverys() {
+//        return deliveryRepository.findAll();
+//    }
+//
+//    @PostMapping("/all")
+//    public DeliveryEntity createDelivery(@Valid @RequestBody DeliveryEntity delivery) {
+//        return deliveryRepository.save(delivery);
+//    }
+//
+//    @GetMapping("/{id}")
+//    public DeliveryEntity getDeliveryById(@PathVariable(value = "id") Long deliveryId) {
+//        return deliveryRepository.findById(deliveryId)
+//            .orElseThrow(() -> new ResourceNotFoundException("Delivery", "id", deliveryId));
+//    }
+//
+//
+//    @PutMapping("/{id}")
+//    public DeliveryEntity updateDelivery(@PathVariable(value = "id") Long deliveryId,
+//                                         @Valid @RequestBody DeliveryEntity deliveryDetails) {
+//
+//        DeliveryEntity delivery = deliveryRepository.findById(deliveryId)
+//            .orElseThrow(() -> new ResourceNotFoundException("Delivery", "id", deliveryId));
+//
+//        delivery.setCity(deliveryDetails.getCity());
+//        delivery.setStreet(deliveryDetails.getStreet());
+//        delivery.setHome(deliveryDetails.getHome());
+//        delivery.setApartment(deliveryDetails.getApartment());
+//
+//
+//        DeliveryEntity updatedDelivery = deliveryRepository.save(delivery);
+//        return updatedDelivery;
+//    }
+//
+//    @DeleteMapping("/delivery/{id}")
+//    public ResponseEntity<?> deleteDelivery(@PathVariable(value = "id") Long deliveryId) {
+//        DeliveryEntity delivery = deliveryRepository.findById(deliveryId)
+//            .orElseThrow(() -> new ResourceNotFoundException("Delivery", "id", deliveryId));
+//
+//        deliveryRepository.delete(delivery);
+//
+//        return ResponseEntity.ok().build();
 //    }
 }
+
 

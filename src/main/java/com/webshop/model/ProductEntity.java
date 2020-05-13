@@ -37,12 +37,6 @@ public class ProductEntity {
     @Column(name = "PRODUCT_DESCRIPTION")
     private String description;
 
-    @Column(name = "PRODUCT_PICTURE")
-    private byte[] picture;
-
-    @Column(name = "PRODUCT_COUNT")
-    private Long count;
-
     @ManyToOne(cascade = {CascadeType.DETACH}, fetch = FetchType.EAGER)
     @JoinColumn(name = "CATEGORY_ID", foreignKey = @ForeignKey(name = "PROD_CAT_FK"), unique = true)
     private CategoriesEntity category;
@@ -56,8 +50,6 @@ public class ProductEntity {
         this.name = name;
         this.price = price;
         this.description = description;
-        this.count = count;
-
     }
 
 
@@ -156,23 +148,7 @@ public class ProductEntity {
     public void setCategory(CategoriesEntity category) {
         this.category = category;
     }
-    /**
-     * Gets count.
-     *
-     * @return the count
-     */
-    public Long getCount() {
-        return count;
-    }
 
-    /**
-     * Sets count.
-     *
-     * @param count the category
-     */
-    public void setCount(Long count) {
-        this.count = count;
-    }
 
 
 }

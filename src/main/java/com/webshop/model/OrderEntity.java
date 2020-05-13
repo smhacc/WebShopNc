@@ -36,11 +36,18 @@ public class OrderEntity {
     @JoinColumn(name = "DELIVERY_ID", foreignKey = @ForeignKey(name = "OR_DELIV_FK"))
     private DeliveryEntity delivery;
 
-    @Column(name="ORDER_SUM")
-    private Float sum;
+    @OneToOne(cascade = {CascadeType.DETACH})
+    @JoinColumn(name = "PRODUCT_ID", foreignKey = @ForeignKey(name = "OR_PROD_PR_FK"))
+    private ProductEntity product;
 
-    @Column(name = "ORDERS_COMMENT")
-    private String comment;
+    @Column(name="ORDER_Price")
+    private Float price;
+
+    @Column(name = "ORDERS_name")
+    private String name;
+
+    @Column(name = "ORDERS_quantity")
+    private Long quantity;
 
     /**
      * Instantiates a new Order.
@@ -48,13 +55,14 @@ public class OrderEntity {
     public OrderEntity() {
     }
 
-    public OrderEntity(Long id, String comment, float sum/*, DeliveryEntity delivery, CustomerEntity customer*/) {
+    public OrderEntity(Long id, float price, String name, Long quantity ) {
         super();
         this.id = id;
-        this.comment = comment;
-        this.sum = sum;
-        /*this.customer = customer;
-        this.delivery = delivery;*/
+        this.price = price;
+        this.name = name;
+        this.quantity = quantity;
+
+
 
     }
 
@@ -81,36 +89,51 @@ public class OrderEntity {
      *
      * @return the id
      */
-    public String getComment() {
-        return comment;
+    public String getName() {
+        return name;
     }
 
     /**
      * Sets comment.
      *
-     * @param comment the comment
+     * @param name the name
      */
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setName(String name) {
+        this.name = name;
     }
     /**
      * Gets sum.
      *
      * @return the sum
      */
-    public Float getSum() {
-        return sum;
+    public Float getPrice() {
+        return price;
     }
 
     /**
      * Sets id.
      *
-     * @param sum the sum
+     * @param price the price
      */
-    public void setSum(Float sum) {
-        this.sum = sum;
+    public void setPrice(Float price) {
+        this.price = price;
     }
 
+    /**
+     * Gets quantity.
+     *
+     * @return the quantity
+     */
+    public Long getQuantity() { return quantity; }
+
+    /**
+     * Sets id.
+     *
+     * @param quantity the quantity
+     */
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
+    }
     /**
      * Gets user.
      *
@@ -134,7 +157,7 @@ public class OrderEntity {
      *
      * @return the delivery
      */
-    public DeliveryEntity getAddress() {
+    public DeliveryEntity getDelivery() {
         return delivery;
     }
 
@@ -143,7 +166,7 @@ public class OrderEntity {
      *
      * @param delivery the delivery
      */
-    public void setAddress(DeliveryEntity delivery) {
+    public void setDelivery(DeliveryEntity delivery) {
         this.delivery = delivery;
     }
 

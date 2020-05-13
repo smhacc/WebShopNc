@@ -21,21 +21,8 @@
         <a href="#" class="list-group-item active">Menu</a>
         <a href="/list-bluecats" class="list-group-item">Go shopping</a>
 <div class="bs-callout bs-callout-info">
-  <h4>Заголовок компонента "Выноски"</h4>
-  <p>...</p>
-</div>
-       </div>
-       </div><!--/span-->
 
-    </div><!--/.container-->
-    <c:forEach  items="${listProducts}" var="product">
-                 <tr>
-                     <td>${product.id}</td>
-                     <td>${product.name}</td>
-                     <td>${product.description}</td>
-                     <td>${product.count}</td>
-                     <td>${product.price}</td>
-                 </tr>
-             </c:forEach>
+
+
 
 <%@ include file="common/footer.jspf" %>

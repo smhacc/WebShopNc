@@ -1,6 +1,5 @@
 package com.webshop.service;
 
-import com.webshop.model.Product;
 import com.webshop.model.ProductEntity;
 import com.webshop.repository.ProductRepository;
 import java.util.List;

@@ -12,7 +12,7 @@
 				<thead>
 					<tr>
 						<th width="40%">Product</th>
-						<th width="40%">Target Date</th>
+						<th width="40%">sum</th>
 						<th width="20%"></th>
 					</tr>
 				</thead>
@@ -20,16 +20,18 @@
 					<c:forEach items="${listOrders}" var="order">
 						<tr>
 							<td>${order.id}</td>
-							<td><fmt:formatDate value="${order.id}"
-									pattern="dd/MM/yyyy" /></td>
-							<a type="button" class="btn btn-danger"
-								href="/delete-todo?id=${order.id}">Delete</a></td>
+							<td>${order.price}</td>
+							<td>${order.name}</td>
+
+							<td><a type="button" class="btn btn-danger"
+								href="/delete-order/${order.id}">Delete</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 		</div>
 	</div>
+<p><a class="btn btn-default btn-warning" href="/list-bluecats" role="button">Back</a></p>
 
 </div>
 <%@ include file="common/footer.jspf"%>

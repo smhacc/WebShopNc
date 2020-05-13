@@ -50,6 +50,16 @@ public class CustomerEntity {
     @JoinColumn(name = "ORDERS_ID", foreignKey = @ForeignKey(name = "CUST_ORD_ID_FK"))
     private OrderEntity order;
 
+    public CustomerEntity(Long id, String login, char[] password, String first_name, String last_name, String email, String phone_number) {
+        super();
+        this.id = id;
+        this.login = login;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.email = email;
+        this.phone_number = phone_number;
+    }
+
     /**
      * Instantiates a new Customer.
      */

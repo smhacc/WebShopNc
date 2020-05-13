@@ -1,71 +1,57 @@
 package com.webshop.controller;
 
-import com.webshop.exception.ResourceNotFoundException;
 import com.webshop.model.OrderEntity;
-import com.webshop.repository.OrderRepository;
 import com.webshop.service.OrderService;
 import java.util.List;
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 
-@RestController
-@RequestMapping("/api/orders")
+@Controller
 public class OrderController {
 
 	@Autowired
-	private OrderService service;
+	private OrderService orderService;
 
-	@RequestMapping("/cart")
-	public String viewCartPage(Model model) {
-		List<OrderEntity> listOrders = service.listAll();
+	@RequestMapping("/order-page")
+	public String viewOrderPage(Model model) {
+		List<OrderEntity> listOrders = orderService.listAll();
 		model.addAttribute("listOrders", listOrders);
-
-		return "cart";
+		return "order-page";
 	}
 
-	@RequestMapping("/new")
-	public String showNewProductPage(Model model) {
+	@RequestMapping("/new-order")
+	public String showNewCartPage(Model model) {
         OrderEntity order = new OrderEntity();
 		model.addAttribute("order", order);
-
 		return "new_order";
 	}
 
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String saveProduct(@ModelAttribute("product") OrderEntity order) {
-
-		service.save(order);
-
-		return "redirect:/cart";
+	@RequestMapping(value = "/save-order", method = RequestMethod.POST)
+	public String saveOrder(@ModelAttribute("order") OrderEntity order) {
+		orderService.save(order);
+		return "redirect:/order-page";
 	}
 
-	@RequestMapping("/edit/{id}")
-	public ModelAndView showEditProductPage(@PathVariable(name = "id") int id) {
+	@RequestMapping("/edit-order/{id}")
+	public ModelAndView showEditOrderPage(@PathVariable(name = "id") int id) {
 		ModelAndView mav = new ModelAndView("edit_product");
-        OrderEntity order = service.get(id);
+        OrderEntity order = orderService.get(id);
 		mav.addObject("order", order);
 
 		return mav;
 	}
 
-	@RequestMapping("/delete/{id}")
+	@RequestMapping("/delete-order/{id}")
 	public String deleteProduct(@PathVariable(name = "id") int id) {
-		service.delete(id);
-		return "redirect:/";
+		orderService.delete(id);
+		return "redirect:/order-page";
 	}
 
 

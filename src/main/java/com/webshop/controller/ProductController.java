@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -27,15 +26,8 @@ public class ProductController {
         return "list-bluecats";
 
     }
-	@RequestMapping("/list-redcats")
-	public String viewRedPage(Model model) {
-		List<ProductEntity> listProducts1 = productService.listAll();
-		model.addAttribute("listProducts", listProducts1);
-		return "list-redcats";
 
-	}
-
-	@RequestMapping("/new")
+	@RequestMapping("/new-product")
 	public String showNewProductPage(Model model) {
         ProductEntity product = new ProductEntity();
 		model.addAttribute("product", product);
@@ -43,14 +35,14 @@ public class ProductController {
 		return "new_product";
 	}
 
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	@RequestMapping(value = "/save-product", method = RequestMethod.POST)
 	public String saveProduct(@ModelAttribute("product") ProductEntity product) {
         productService.save(product);
 
 		return "redirect:/ist-bluecats";
 	}
 
-	@RequestMapping("/edit/{id}")
+	@RequestMapping("/edit-product/{id}")
 	public ModelAndView showEditProductPage(@PathVariable(name = "id") int id) {
 		ModelAndView mav = new ModelAndView("edit_product");
         ProductEntity product = productService.get(id);
@@ -59,7 +51,7 @@ public class ProductController {
 		return mav;
 	}
 
-	@RequestMapping("/delete/{id}")
+	@RequestMapping("/delete-product/{id}")
 	public String deleteProduct(@PathVariable(name = "id") int id) {
         productService.delete(id);
 		return "redirect:/";
